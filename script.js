@@ -390,23 +390,6 @@ document.getElementById('restartBtn').addEventListener('click', () => {
     game.init();
 });
 
-// 모바일 화살표 버튼
-document.getElementById('arrowUp').addEventListener('click', () => {
-    game.move('up');
-});
-
-document.getElementById('arrowDown').addEventListener('click', () => {
-    game.move('down');
-});
-
-document.getElementById('arrowLeft').addEventListener('click', () => {
-    game.move('left');
-});
-
-document.getElementById('arrowRight').addEventListener('click', () => {
-    game.move('right');
-});
-
 // 드래그 제스처 (모바일)
 let touchStartX = 0;
 let touchStartY = 0;
