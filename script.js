@@ -316,10 +316,30 @@ class Game1024 {
         }
 
         // 타일 생성
-        const boardWidth = gameBoard.offsetWidth;
-        const boardHeight = gameBoard.offsetHeight;
-        const cellWidth = (boardWidth - 40) / this.size;
-        const cellHeight = (boardHeight - 40) / this.size;
+        // 실제 그리드 셀의 크기와 위치를 읽어서 사용
+        const firstRow = gameBoard.querySelector('.grid-row');
+        if (!firstRow) return;
+        
+        const firstCell = firstRow.querySelector('.grid-cell');
+        if (!firstCell) return;
+        
+        const cellRect = firstCell.getBoundingClientRect();
+        const boardRect = gameBoard.getBoundingClientRect();
+        const cellWidth = firstCell.offsetWidth;
+        const cellHeight = firstCell.offsetHeight;
+        
+        // gap 계산 (첫 번째와 두 번째 셀 사이의 거리)
+        const secondCell = firstRow.children[1];
+        const gap = secondCell ? (secondCell.getBoundingClientRect().left - cellRect.right) : 10;
+        
+        // row의 margin-bottom 계산
+        const allRows = gameBoard.querySelectorAll('.grid-row');
+        const rowMarginBottom = allRows.length > 1 ? 
+            (allRows[1].getBoundingClientRect().top - allRows[0].getBoundingClientRect().bottom) : 10;
+        
+        // 첫 번째 셀의 상대 위치 계산
+        const firstCellLeft = firstCell.getBoundingClientRect().left - boardRect.left;
+        const firstCellTop = firstCell.getBoundingClientRect().top - boardRect.top;
         
         for (let i = 0; i < this.size; i++) {
             for (let j = 0; j < this.size; j++) {
@@ -330,8 +350,8 @@ class Game1024 {
                     
                     tile.style.width = cellWidth + 'px';
                     tile.style.height = cellHeight + 'px';
-                    tile.style.left = (j * (cellWidth + 10) + 10) + 'px';
-                    tile.style.top = (i * (cellHeight + 10) + 10) + 'px';
+                    tile.style.left = (firstCellLeft + j * (cellWidth + gap)) + 'px';
+                    tile.style.top = (firstCellTop + i * (cellHeight + rowMarginBottom)) + 'px';
                     
                     gameBoard.appendChild(tile);
                 }
