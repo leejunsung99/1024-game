@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1024 게임</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>1024 게임</h1>
+        
+        <div class="game-controls">
+            <button id="mode4x4" class="mode-btn active">4×4</button>
+            <button id="mode5x5" class="mode-btn">5×5</button>
+            <button id="undoBtn" class="undo-btn">이전 단계</button>
+            <button id="newGame" class="new-game-btn">새 게임</button>
+        </div>
+
+        <div class="score-container">
+            <div class="score">
+                <div class="score-label">점수</div>
+                <div id="score">0</div>
+            </div>
+            <div class="best-score">
+                <div class="score-label">최고 점수</div>
+                <div id="bestScore">0</div>
+            </div>
+        </div>
+
+        <div class="game-wrapper">
+            <div id="gameBoard" class="game-board"></div>
+            <div class="mobile-controls">
+                <button id="arrowUp" class="arrow-btn">↑</button>
+                <div class="arrow-row">
+                    <button id="arrowLeft" class="arrow-btn">←</button>
+                    <button id="arrowRight" class="arrow-btn">→</button>
+                </div>
+                <button id="arrowDown" class="arrow-btn">↓</button>
+            </div>
+        </div>
+
+        <div id="gameOver" class="game-over hidden">
+            <div class="game-over-content">
+                <h2 id="gameOverMessage">게임 오버!</h2>
+                <button id="restartBtn" class="restart-btn">다시 시작</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p>방향키(↑ ↓ ← →)를 사용하여 타일을 이동하세요</p>
+            <p>같은 숫자의 타일을 합쳐서 1024를 만드세요!</p>
+            <p>스페이스바: 이전 단계로 되돌리기</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
